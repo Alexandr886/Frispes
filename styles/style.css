@@ -75,18 +75,19 @@ body {
    padding: 0 15px;
 }
 
-.menu__link {
+.nav__link {
    padding-right: 37px;
    color: #222831;
    line-height: 28px;
    transition: ease .3s color;
 }
 
-.menu__link:last-child {
+.nav__link:last-child {
    padding-right: 0;
 }
 
-.menu__link:hover {
+.nav__link:hover,
+.modal .nav__link:hover {
    color: #FF5722;
 }
 
@@ -114,7 +115,7 @@ body {
    box-shadow: 0px 4px 16px rgba(16, 55, 92, 0.32);
 }
 
-.menu-burger {
+.burger {
    cursor: pointer;
    border: 2px solid transparent;
    padding: 5px;
@@ -122,11 +123,11 @@ body {
    transition: ease 0.3s border;
 }
 
-.menu-burger:hover {
+.burger:hover {
    border: 2px solid #10375C;
 }
 
-.menu-burger__line {
+.burger__line {
    display: block;
    background-color: #10375C;
    width: 20px;
@@ -134,8 +135,79 @@ body {
    margin-bottom: 5px;
 }
 
-.menu-burger__line:last-child {
+.burger__line:last-child {
    margin-bottom: 0;
+}
+
+.modal {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%) scale(0);
+   transition: 200ms ease-in-out;
+   border-radius: 10px;
+   z-index: 10;
+   background: #F9F8FF;
+   width: 65%;
+   padding: 30px 20px 20px 20px;
+}
+
+.modal.active {
+   transform: translate(-50%, -50%) scale(1);
+}
+
+.modal .close-button {
+   cursor: pointer;
+   border: none;
+   background: none;
+   font-size: 40px;
+   font-weight: 400;
+   position: absolute;
+   top: 0;
+   right: 11px;
+   padding: 0;
+}
+
+#overlay {
+   position: fixed;
+   opacity: 0;
+   transition: 200ms ease-in-out;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   background: rgba(0, 0, 0, 0.5);
+   pointer-events: none;
+}
+
+ #overlay.active {
+   opacity: 1;
+   pointer-events: all;
+}
+
+.modal .nav {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 30px;
+}
+
+ .modal .nav__link {
+   color: #222831;
+   margin-bottom: 10px;
+}
+
+ .modal .nav__link:last-child {
+   margin-bottom: 0;
+}
+
+ .modal .button-get {
+    border: 1px solid;
+    width: 100px;
+    margin-top: 20px;
+}
+
+ .modal .button-get:hover {
+   opacity: 1;
 }
 
 /*------------------Первая секция PAGE-ONE--------------*/
@@ -941,9 +1013,7 @@ footer {
 
 
 
-/* ------------------Адаптив-------------- */
-
-
+/* ------------------------Адаптив--------------------- */
 @media (max-width: 1076px) {
    .title__h1 {
       font-size: 48px;
@@ -978,7 +1048,7 @@ footer {
 
 
 @media(max-width: 992px) {
-   .menu__link {
+   .nav__link {
       padding-right: 20px;
    }
 
@@ -1022,7 +1092,7 @@ footer {
 
 
 @media (min-width: 896px) {
-   .menu-burger {
+   .burger-menu {
       display: none;
    }
 }
@@ -1038,12 +1108,13 @@ footer {
       margin-bottom: 40px;
    }
 
-   .menu,
+   .nav,
    .login {
       display: none;
    }
 
-   .menu-burger {
+   .burger-menu,
+   .modal .login {
       display: block;
    }
 
